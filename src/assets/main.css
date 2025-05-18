@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+    font-family: 'Bohema Pink';
+    src: url('@/assets/font.ttf');
+}
+
+@font-face {
+    font-family: 'Moloko';
+    src: url('@/assets/moloko.ttf');
+}
+* {
+    box-sizing: border-box;
+}
+html {
+    display: flex;
+    flex-direction: column;
+    height: 700vh;
+    /*height: 100%;*/
+    /*overflow: hidden; !* Отключает скролл *!*/
+}
+body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    background-color: #f3f4ef;
+    font-family: "Merriweather", serif;
+    height: 700vh;
+    overflow-y: auto; /* Включает вертикальный скролл внутри body */
+    -webkit-overflow-scrolling: touch; /* Плавный скролл для iOS */
+}
+#app {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gsap-marker-start, .gsap-marker-scroller-end, .gsap-marker-scroller-start {
+    /*display: none !important;*/
+}
