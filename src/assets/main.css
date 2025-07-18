@@ -25,7 +25,7 @@ body {
     padding: 0;
     margin: 0;
     background-color: #f3f4ef;
-    font-family: "Merriweather", serif;
+    font-family: "Source Serif 4", serif;
     height: 700vh;
     overflow-y: auto; /* Включает вертикальный скролл внутри body */
     -webkit-overflow-scrolling: touch; /* Плавный скролл для iOS */

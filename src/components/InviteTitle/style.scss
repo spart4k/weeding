@@ -1,17 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
 .heightWindow {
   position: fixed;
   bottom: 0;
 }
+
+.path-fill {
+  fill: #e74c3c;
+  animation: pulse 1.5s infinite ease-in-out;
+  transform-origin: center center;
+}
+
+.wave {
+  fill: currentColor;
+  opacity: 0.4;
+  transform-origin: center center;
+  animation: wave-pulse 2s infinite ease-in-out;
+}
+
+.wave-1 {
+  animation-delay: 0s;
+}
+.wave-2 {
+  animation-delay: 0.3s;
+}
+.wave-3 {
+  animation-delay: 0.6s;
+}
+
+/* Анимация пульса основного сердца */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+}
+
+/* Анимация расходящейся волны */
+@keyframes wave-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
 .container {
   //height: 200vh; /* Высота контейнера для прокрутки */
   display: flex;
   flex-direction: column;
-  $marginTitle: 15px;
+  $marginTitle: 25px;
   &-wrap {
 
   }
   .offer {
     transform: scale(0.9);
+    width: 100%;
+    color: #f3f4ef;
+    &-desc {
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 1.8rem;
+    }
+    &-title {
+      font-family: "Comforter Brush", cursive;
+      text-align: center;
+      font-size: 4.8rem;
+      margin-bottom: 1.4rem;
+    }
   }
   .title {
     display: none;
@@ -23,22 +85,38 @@
     width: 100%;
     font-size: 40px;
     //margin-left: 20px;
-    margin-top: 10px;
-    .dear {
-      margin-left: $marginTitle;
-    }
-    .name {
-      font-size: 60px;
-      margin-left: $marginTitle;
+    margin-top: 3rem;
+    &-end {
       text-align: center;
     }
+    .dear {
+      //margin-left: $marginTitle;
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 0rem;
+    }
+    .name {
+      font-size: 3.6rem;
+      font-family: "Comforter Brush", cursive;
+      &-1 {
+        text-align: left;
+        margin-left: $marginTitle;
+        transform: translateY(2.5rem);
+      }
+      &-2 {
+        text-align: right;
+        margin-right: $marginTitle;
+        transform: translateY(-2rem);
+      }
+    }
     .invite {
-      margin-top: 50px;
-      margin-left: $marginTitle;
-      text-align: left;
+      margin-top: 1rem;
+      font-size: 1rem;
+      text-align: center;
+      padding-inline: $marginTitle;
     }
     .weeding {
-      font-size: 60px;
+      font-size: 45px;
     }
   }
 }
@@ -73,7 +151,6 @@
   transition: height 0.1s;
   background-color: #191b20;
   clip-path: inset(50% 0%);
-  color: #fff;
   font-size: 40px;
   margin: 0 auto;
   padding: 15px;
@@ -134,13 +211,54 @@
     opacity: 0;
     transform: translateY(100%); /* Начальная позиция */
     h2 {
-      font-family: "Bohema Pink", sans-serif;
-      font-weight: 300;
+      font-family: "Comforter Brush", cursive;
+      font-weight: 500;
       //width: 0;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
     }
     p {
-      font-family: 'Moloko', sans-serif;
+      //font-family: 'Moloko', sans-serif;
       margin-bottom: 60px;
+      margin-top: 0;
+      font-size: 0.9rem;
+    }
+    .dress-code {
+      position: relative;
+      width: 160px;
+      height: 48px;
+      border-radius: 50px;
+      border: 1px solid red;
+      display: flex;
+      &-desc {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      &-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); // 2 колонки равной ширины
+        gap: 1rem; // расстояние между блокам
+        padding-inline: .5rem;
+      }
+      &-body {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      &-circle {
+        //position: absolute;
+        content: '';
+        display: block;
+        height: 100%;
+        right: 0;
+        top: 0;
+        padding-left: 31%;
+        border-radius: 50%;
+        background-color: #c57cfa;
+      }
     }
   }
 
@@ -279,5 +397,90 @@
       }
     }
 
+  }
+}
+
+.quiz {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f3f4ef;
+  min-height: 100vw;
+  padding-inline: 20px;
+  transform: translateY(100%);
+  &-hr {
+    margin-block: 24px;
+    border-bottom: 1px solid #C9C9C9;
+    width: 94px;
+    margin-inline: auto;
+  }
+  h2 {
+    font-family: "Comforter Brush", cursive;
+    font-size: 48px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  &-form {
+    display: grid;
+    gap: 24px;
+    button {
+      width: 206px;
+      height: 48px;
+      background-color: transparent;
+      border-radius: 50px;
+      border: 1px solid #252525;
+      margin: 0 auto 50px auto;
+    }
+    &-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      label {
+        display: flex;
+        align-items: center;
+        .radio-checked, .checkbox-checked {
+          fill: transparent;
+          stroke: transparent;
+          transition: fill, stroke 0.2s ease;
+        }
+        .animate-fill {
+          fill: currentColor;
+          stroke: currentColor;
+        }
+        span {
+          font-size: 16px;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+}
+
+.schedule {
+  display: flex;
+  display: grid;
+  grid-template-columns: 40px 30px 1fr; // именно то, что нужно!
+  gap: 25px; // отступы между блоками (по желанию)
+  align-items: flex-start; // выравнивание по вертикали
+  &-description {
+    font-size: 12px;
+  }
+  &-title {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  &-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 2rem;
+    gap: 24px
   }
 }
