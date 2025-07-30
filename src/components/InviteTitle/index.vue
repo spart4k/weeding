@@ -131,24 +131,6 @@
         </template>
       </div>
     </div>
-    <div ref="leadingJob" class="leading-job">
-      Ведущий
-    </div>
-    <div ref="leadingVideo" class="leading">
-      <div class="leading-wrap">
-        <div ref="leadingName" class="leading-name">
-          Савин<br>&nbsp;&nbsp; Александр
-        </div>
-        <video ref="mainVideo" muted loop playsinline webkit-playinginline id="mainVideo">
-          <!-- <source v-if="!isMobile" :src="mainVideoUrls.desktop" type="video/webm"> -->
-          <source poster="https://koshta.c.roky.rocks/uploads/mainposter_ba70b0b94a.png?updated_at=2022-10-19T17:58:47.272Z" src="/leading.mp4" type="video/mp4">
-          <!--        <source v-if="isMobile" poster="https://koshta.c.roky.rocks/uploads/mainpostermobile_dbb55586ea.png?updated_at=2022-10-19T17:58:46.214Z" :src="require('@/assets/video/mainvideomobile.webm')" type="video/webm">-->
-          <!--        <source v-if="isMobile" poster="https://koshta.c.roky.rocks/uploads/mainpostermobile_dbb55586ea.png?updated_at=2022-10-19T17:58:46.214Z" :src="mainVideoUrls ? mainVideoUrls.mobile : ''" type="video/mp4">-->
-
-          <!-- <source v-if="isMobile" :src="mainVideoUrls.mobile" type="video/mp4"> -->
-        </video>
-      </div>
-    </div>
     <div ref="site" class="site">
       <div class="site-wrap">
         <div ref="siteDesc" class="site-job">
@@ -410,10 +392,11 @@ const formData = reactive({
   selectedAlc: [],
   isZAGS: ''
 })
+
 const galleryAlekseyPhoto = ref([
   {
     id: 'photo1',
-    url: 'https://i.ibb.co/1G8DD198/photo-2025-02-23-06-01-46.jpg',
+    url: 'https://i.postimg.cc/MGzQyQbf/IMG-9803.jpg',
     positionX: 'left',
     positionY: 'top',
     x: '10%',
@@ -422,7 +405,7 @@ const galleryAlekseyPhoto = ref([
   },
   {
     id: 'photo2',
-    url: 'https://i.ibb.co/WpfYSwk4/photo-2025-03-03-15-55-52.jpg',
+    url: 'https://i.postimg.cc/v8CX5011/IMG-9804.jpg',
     positionX: 'right',
     positionY: 'bottom',
     x: '10%',
@@ -431,7 +414,7 @@ const galleryAlekseyPhoto = ref([
   },
   {
     id: 'photo3',
-    url: 'https://i.ibb.co/ns3SZHbr/photo-2025-03-03-15-55-55.jpg',
+    url: 'https://i.postimg.cc/28vGGnv0/IMG-9805.jpg',
     positionX: 'left',
     positionY: 'bottom',
     x: '10%',
@@ -440,7 +423,7 @@ const galleryAlekseyPhoto = ref([
   },
   {
     id: 'photo4',
-    url: 'https://i.ibb.co/Zp54LTrP/photo-2025-03-03-15-56-01-3.jpg',
+    url: 'https://i.postimg.cc/bdXGdDwJ/IMG-9806.jpg',
     positionX: 'right',
     positionY: 'top',
     x: '10%',
@@ -449,22 +432,14 @@ const galleryAlekseyPhoto = ref([
   },
   {
     id: 'photo6',
-    url: 'https://i.ibb.co/1J9VYDDg/photo-2025-03-03-15-56-01.jpg',
+    url: 'https://i.postimg.cc/WpdXDB4L/IMG-9807.jpg',
     positionX: 'left',
     positionY: 'bottom',
     x: '10%',
     y: '10%',
     width: '80%'
   },
-  {
-    id: 'photo5',
-    url: 'https://i.ibb.co/JwQ3C0px/photo-2025-03-03-15-56-01-2.jpg',
-    positionX: 'left',
-    positionY: 'bottom',
-    x: '10%',
-    y: '0%',
-    width: '80%'
-  },
+
 
 ])
 const galleryPhotoImg = ref([])
@@ -508,7 +483,22 @@ const articles = ref([
       {
         title: 'Лиловый',
         color: '#C57CFAFF'
-      }
+      },
+      {
+        title: 'Оливковый',
+        color: '#173F36'
+      },{
+        title: 'Оливковый',
+        color: '#778959'
+      },
+      {
+        title: 'Оливковый',
+        color: '#B0998B'
+      },
+      {
+        title: 'Оливковый',
+        color: '#43322F'
+      },
     ]
   },
   {
@@ -576,7 +566,7 @@ const startAnim = () => {
       title.value,
       {
         opacity: 1, // Начальное значение прозрачности
-        y: 50, // Начальное смещение текста по вертикали
+        y: 0, // Начальное смещение текста по вертикали
       },
       {
         scrollTrigger: {
@@ -795,54 +785,54 @@ const startAnim = () => {
   const leadingVideoDuration = 1600
   const startLeading = endArticlseBlock - 1000
 
-  gsap.to(leadingVideo.value,{
-    scrollTrigger: {
-      trigger: document.body, // Триггер на весь документ
-      start: startLeading, // Начало анимации, когда центр блока достигает центра экрана
-      end: startLeading + leadingVideoDuration, // Продолжительность анимации относительно прокрутки
-      scrub: 1, // Плавное завершение анимации
-      markers: false, // Отладочные маркеры (можно удалить в продакшене)
-    },
-    // x: 100, // Конечное значение top (элемент уходит вверх)
-    y: '-100%',
-    ease: 'none',
-    // opacity: 1,
-    duration: 1,
-  });
+  // gsap.to(leadingVideo.value,{
+  //   scrollTrigger: {
+  //     trigger: document.body, // Триггер на весь документ
+  //     start: startLeading, // Начало анимации, когда центр блока достигает центра экрана
+  //     end: startLeading + leadingVideoDuration, // Продолжительность анимации относительно прокрутки
+  //     scrub: 1, // Плавное завершение анимации
+  //     markers: false, // Отладочные маркеры (можно удалить в продакшене)
+  //   },
+  //   // x: 100, // Конечное значение top (элемент уходит вверх)
+  //   y: '-100%',
+  //   ease: 'none',
+  //   // opacity: 1,
+  //   duration: 1,
+  // });
   // Должность Ведущего
-  gsap.to(leadingJob.value,{
-    scrollTrigger: {
-      trigger: document.body, // Триггер на весь документ
-      start: startLeading + 100, // Начало анимации, когда центр блока достигает центра экрана
-      end: startLeading + leadingVideoDuration - 2000, // Продолжительность анимации относительно прокрутки
-      scrub: 1, // Плавное завершение анимации
-      markers: false, // Отладочные маркеры (можно удалить в продакшене)
-    },
-    // x: 100, // Конечное значение top (элемент уходит вверх)
-    x: '0',
-    ease: 'none',
-    // opacity: 1,
-    duration: 1,
-  });
+  // gsap.to(leadingJob.value,{
+  //   scrollTrigger: {
+  //     trigger: document.body, // Триггер на весь документ
+  //     start: startLeading + 100, // Начало анимации, когда центр блока достигает центра экрана
+  //     end: startLeading + leadingVideoDuration - 2000, // Продолжительность анимации относительно прокрутки
+  //     scrub: 1, // Плавное завершение анимации
+  //     markers: false, // Отладочные маркеры (можно удалить в продакшене)
+  //   },
+  //   // x: 100, // Конечное значение top (элемент уходит вверх)
+  //   x: '0',
+  //   ease: 'none',
+  //   // opacity: 1,
+  //   duration: 1,
+  // });
 
-  gsap.to(leadingName.value,{
-    scrollTrigger: {
-      trigger: document.body, // Триггер на весь документ
-      start: startLeading + 2000, // Начало анимации, когда центр блока достигает центра экрана
-      end: startLeading + 3000, // Продолжительность анимации относительно прокрутки
-      scrub: 1, // Плавное завершение анимации
-      markers: false, // Отладочные маркеры (можно удалить в продакшене)
-    },
-    // x: 100, // Конечное значение top (элемент уходит вверх)
-    x: '0',
-    ease: 'none',
-    // opacity: 1,
-    duration: 1,
-  });
+  // gsap.to(leadingName.value,{
+  //   scrollTrigger: {
+  //     trigger: document.body, // Триггер на весь документ
+  //     start: startLeading + 2000, // Начало анимации, когда центр блока достигает центра экрана
+  //     end: startLeading + 3000, // Продолжительность анимации относительно прокрутки
+  //     scrub: 1, // Плавное завершение анимации
+  //     markers: false, // Отладочные маркеры (можно удалить в продакшене)
+  //   },
+  //   // x: 100, // Конечное значение top (элемент уходит вверх)
+  //   x: '0',
+  //   ease: 'none',
+  //   // opacity: 1,
+  //   duration: 1,
+  // });
   // Имя Ведущего
-  const endLeading = startLeading + 3000
+  const endLeading = startLeading
   const siteVideoDuration = 4000
-  const startSiteVideo = endLeading - 2000
+  const startSiteVideo = endLeading - 3000
   console.log(endLeading, 'endLeading')
   gsap.to(site.value,{
     scrollTrigger: {
@@ -876,7 +866,7 @@ const startAnim = () => {
   });
 
 
-  gsap.to(siteImg2.value,{
+  gsap.to(siteImg2.value, {
     scrollTrigger: {
       trigger: document.body, // Триггер на весь документ
       start: startSiteVideo + 5500, // Начало анимации, когда центр блока достигает центра экрана
@@ -911,6 +901,8 @@ const startAnim = () => {
   );
 
   gsap.to(quiz.value,{
+      y: '100%', // Начальное смещение текста по вертикали
+    },{
     scrollTrigger: {
       trigger: document.body, // Триггер на весь документ
       start: startSiteVideo + siteVideoDuration + 4000, // Начало анимации, когда центр блока достигает центра экрана
@@ -919,7 +911,7 @@ const startAnim = () => {
       markers: false, // Отладочные маркеры (можно удалить в продакшене)
     },
     // x: 100, // Конечное значение top (элемент уходит вверх)
-    y: '-180px',
+    y: '0%',
     ease: 'none',
     // opacity: 1,
     duration: 1,
@@ -942,17 +934,17 @@ onMounted(() => {
     heightWindow.value = window.innerHeight
   }
   window.addEventListener('resize', documentHeight)
-  mainVideo.value.addEventListener('loadeddata', (e) => {
-    //Video should now be loaded but we can add a second check
-    // console.log('load')
-    mainVideo.value.play()
-    if(mainVideo.value.readyState >= 3){
-      //your code goes here
-      // loading.value = false
-      // console.log('loaded')
-    }
+  // mainVideo?.value.addEventListener('loadeddata', (e) => {
+  //   //Video should now be loaded but we can add a second check
+  //   // console.log('load')
+  //   mainVideo.value.play()
+  //   if(mainVideo.value.readyState >= 3){
+  //     //your code goes here
+  //     // loading.value = false
+  //     // console.log('loaded')
+  //   }
 
-  });
+  // });
 
   documentHeight()
   startAnim();
