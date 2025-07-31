@@ -1,9 +1,9 @@
 <template>
   <div ref="container" class="container">
     <div ref="title" class="title">
-      <span class="dear">Уважаемые</span>
-      <span class="name"><div class="name-1">{{ name1 }}</div><div class="title-end">и</div><div class="name-2">{{ name2 }}</div></span>
-      <span class="invite">
+      <span class="dear">{{ name2 ? 'Уважаемые' : 'Уважаемый' }}</span>
+      <span class="name"><div :style="{ textAlign: !name2 ? 'center' : 'left' }" class="name-1">{{ name1 }}</div><div class="title-end">{{ name2 ? 'и' : '' }}</div><div class="name-2">{{ name2 }}</div></span>
+      <span :style="{ marginTop: !name2 ? '40px' : '1rem' }" class="invite">
         Один день в этом году будет для нас особенным, и мы хотим провести его в кругу близких и друзей. С большим удовольствием приглашаем вас на знаменательный праздник - нашу свадьбу!
 <!--        Приглашаем вас на <br></br><span class="weeding">свадьбу</span>-->
       </span>
@@ -211,7 +211,7 @@
               </div>
             </div>
 
-            <div class="quiz-form-block">
+            <div v-if="false" class="quiz-form-block">
               <h3 style="margin-bottom: 0;" for="">
                 Что предпочитаете из напитков?
               </h3>
@@ -268,10 +268,41 @@
                 </label>
               </div>
             </div>
-
-            <button @click="submitForm" class="quiz-form-button">Отправить</button>
+            <div class=""></div>
+            <button @click="submitForm" class="quiz-form-button">
+              <svg v-if="loading" class="quiz-form-button--loader" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><radialGradient id='a12' cx='.66' fx='.66' cy='.3125' fy='.3125' gradientTransform='scale(1.5)'><stop offset='0' stop-color='#252525'></stop><stop offset='.3' stop-color='#252525' stop-opacity='.9'></stop><stop offset='.6' stop-color='#252525' stop-opacity='.6'></stop><stop offset='.8' stop-color='#252525' stop-opacity='.3'></stop><stop offset='1' stop-color='#252525' stop-opacity='0'></stop></radialGradient><circle transform-origin='center' fill='none' stroke='url(#a12)' stroke-width='15' stroke-linecap='round' stroke-dasharray='200 1000' stroke-dashoffset='0' cx='100' cy='100' r='70'><animateTransform type='rotate' attributeName='transform' calcMode='spline' dur='2' values='360;0' keyTimes='0;1' keySplines='0 0 1 1' repeatCount='indefinite'></animateTransform></circle><circle transform-origin='center' fill='none' opacity='.2' stroke='#252525' stroke-width='15' stroke-linecap='round' cx='100' cy='100' r='70'></circle></svg>
+              <span v-else>Отправить</span>
+            </button>
           </div>
         </div>
+      </div>
+    </div>
+    <div ref="arrowDown" class="arrow-down">
+      <div class="scroll-hint">
+        <svg class="scroll-arrow" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M12 19l-5-5M12 19l5-5" />
+        </svg>
+      </div>
+    </div>
+    <div v-if="success" class="accept-popup">
+      <div class="accept-popup-wrap">
+        <h3 class="">
+          Спасибо, что ответили на вопросы!
+        </h3>
+        <div class="">Ваш ответ очень важен для нас 💖</div>
+        <br>
+        <div class="">
+          Чтобы быть в курсе всех деталей свадьбы — красивых моментов, программе вечера, музыке и приятных сюрпризах — присоединяйтесь к нашей
+          👉 <a target="_blank" href="https://t.me/+VeM5GQhEKtg1MWQ6">закрытой группе в Telegram</a>
+        </div>
+        <br>
+        <div class="">
+          Там мы будем делиться самыми тёплыми подготовками к празднику 🥂
+        </div>
+        <br>
+       <div class="">
+         Ждём вас!
+       </div>
       </div>
     </div>
   </div>
@@ -325,6 +356,7 @@ const submitForm = async () => {
     console.error('Error saving data:', err)
     error.value = 'Не удалось сохранить данные'
   } finally {
+    loading.value = true
     loading.value = false
   }
 }
@@ -343,6 +375,7 @@ const leadingVideo = ref(null)
 const coverSite = ref(null)
 const leadingJob = ref(null)
 const leadingName = ref(null)
+const arrowDown = ref(null)
 const clientId = '737941098625-47hiprunk4vrjsk1lgl7orgsar8hvrsa.apps.googleusercontent.com'
 const spreedId = '1_wd-qMaB-IbIKKMkw2xR9mZNKhJbb1n-qiDECCU9bqU'
 const handleClientLoad = () => {
@@ -901,8 +934,6 @@ const startAnim = () => {
   );
 
   gsap.to(quiz.value,{
-      y: '100%', // Начальное смещение текста по вертикали
-    },{
     scrollTrigger: {
       trigger: document.body, // Триггер на весь документ
       start: startSiteVideo + siteVideoDuration + 4000, // Начало анимации, когда центр блока достигает центра экрана
@@ -917,6 +948,20 @@ const startAnim = () => {
     duration: 1,
   });
 
+  gsap.to(arrowDown.value,{
+    scrollTrigger: {
+      trigger: document.body, // Триггер на весь документ
+      start: startSiteVideo + siteVideoDuration + 4000 + 1000, // Начало анимации, когда центр блока достигает центра экрана
+      end: startSiteVideo + siteVideoDuration + 6000, // Продолжительность анимации относительно прокрутки
+      scrub: 1, // Плавное завершение анимации
+      markers: false, // Отладочные маркеры (можно удалить в продакшене)
+    },
+    // x: 100, // Конечное значение top (элемент уходит вверх)
+    bottom: '-50%',
+    ease: 'none',
+    // opacity: 1,
+    duration: 1,
+  });
   const endSite = startSiteVideo + siteVideoDuration + 9000
 
   document.documentElement.style.height = endSite + 'px'
